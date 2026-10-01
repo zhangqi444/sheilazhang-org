@@ -5,7 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# configure-pages needs pages:write to turn Pages on the first time.
+# Pages has to be switched on by hand once, in Settings -> Pages -> Build and
+# deployment -> Source: GitHub Actions. The enablement below asks the API to do
+# it, but GITHUB_TOKEN is not allowed to create a Pages site ("Resource not
+# accessible by integration"), so until a human flips that switch every run
+# fails here. Once it is on, this step just reads the config and passes.
 permissions:
   contents: read
   pages: write
