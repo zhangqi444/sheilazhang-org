@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sheila Zhang</title>
+    <meta name="description" content="Sheila Zhang — everything I'm making, in one place." />
+    <meta name="theme-color" content="#2b63c9" />
+    <link rel="canonical" href="https://sheilazhang.org/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <link rel="stylesheet" href="assets/styles.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sheilazhang.org/" />
+    <meta property="og:title" content="Sheila Zhang" />
+    <meta property="og:description" content="Everything I'm making, in one place." />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Set the theme before first paint so there is no flash of the wrong one. -->
+    <script>
+      try {
+        var saved = localStorage.getItem("theme");
+        var dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div class="hero" aria-hidden="true"></div>
+
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5" />
+        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" />
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2z" />
+      </svg>
+    </button>
+
+    <main class="page">
+      <header class="intro">
+        <div class="avatar" aria-hidden="true">SZ</div>
+        <h1>Sheila Zhang</h1>
+        <p class="tagline">Everything I'm making, in one place.</p>
+      </header>
+
+      <!-- Links. To add one, copy a whole <li> block and edit the href, the
+           <span class="link-title">, the <span class="link-note"> and the glyph. -->
+      <nav aria-label="My links">
+        <ul class="links">
+          <li>
+            <a class="link" href="https://creating.sheilazhang.org/">
+              <span class="link-glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+                  <circle cx="8.5" cy="10" r="1.8" />
+                  <path d="M3.8 17.2l4.6-4.3a2 2 0 0 1 2.7 0l3.1 2.9 2.2-2a2 2 0 0 1 2.7 0l2 1.8" />
+                </svg>
+              </span>
+              <span class="link-text">
+                <span class="link-title">Creating</span>
+                <span class="link-note">A picture blog — pictures, and a little about making them.</span>
+              </span>
+              <span class="link-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5" /></svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <footer class="foot">
+        <p>sheilazhang.org</p>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        document.getElementById("theme-toggle").addEventListener("click", function () {
+          var dark = root.classList.toggle("dark");
+          try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>

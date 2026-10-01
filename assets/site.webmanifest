@@ -1,0 +1,13 @@
+{
+  "name": "Sheila Zhang",
+  "short_name": "Sheila Zhang",
+  "description": "Everything I'm making, in one place.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#f5f7fa",
+  "theme_color": "#2b63c9",
+  "icons": [
+    { "src": "/assets/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+  ]
+}
