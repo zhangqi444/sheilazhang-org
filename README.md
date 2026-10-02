@@ -61,15 +61,16 @@ button in the corner flips it and remembers.
 ## Deploying
 
 Every push to `main` runs `.github/workflows/pages.yml`, which uploads the root
-of the repository to GitHub Pages. Two things are needed once, on GitHub:
+of the repository to GitHub Pages. Three things are set outside the repository:
 
-1. **Settings → Pages → Build and deployment.** Pages is enabled. Which
-   *Source* is selected decides what publishes the site: **Deploy from a
-   branch** means GitHub builds `main` itself on every push and
-   `.github/workflows/pages.yml` is redundant, while **GitHub Actions** means
-   that workflow is what publishes. A `GITHUB_TOKEN` can neither create a Pages
-   site nor change this setting, so it is always a human's click.
-2. **DNS for the apex domain.** `sheilazhang.org` needs four `A` records (and,
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.** Already
+   set. A `GITHUB_TOKEN` can neither create a Pages site nor change its source,
+   so this one is always a human's click.
+2. **Settings → Environments → github-pages → deployment branch rules.** If this
+   restricts branches and `main` does not match, the deploy job is refused
+   before its first step runs — a one-second failure with no steps and no logs,
+   which reads like a broken workflow but is a setting.
+3. **DNS for the apex domain.** `sheilazhang.org` needs four `A` records (and,
    for IPv6, four `AAAA` records) pointing at GitHub's Pages servers; the
    current addresses are in
    [GitHub's apex-domain documentation](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain).

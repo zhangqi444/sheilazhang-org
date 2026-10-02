@@ -37,15 +37,16 @@ test suite.
 
 ## Pages
 
-Pages is enabled on the repository. Check which **Source** it serves from under
-Settings → Pages before changing anything about deployment, because the two
-sources are mutually exclusive:
+The site is served from GitHub Pages with **Source: GitHub Actions**, so
+`.github/workflows/pages.yml` is the thing that publishes it. Every push to
+`main` deploys; the whole run takes about twenty seconds.
 
-- **Deploy from a branch** — GitHub builds and publishes the branch itself on
-  every push. Nothing in `.github/workflows` is involved, and a custom workflow
-  that tries to deploy is rejected by the `github-pages` environment before its
-  first step runs.
-- **GitHub Actions** — `.github/workflows/pages.yml` is what publishes the site.
+Two settings live outside this repository and cannot be changed from a workflow,
+because `GITHUB_TOKEN` is allowed to deploy to Pages but not to configure it:
 
-A `GITHUB_TOKEN` cannot create a Pages site or change its source, so anything in
-that dropdown needs a human with repository settings access.
+- **Settings → Pages** — whether Pages is on at all, and which source it uses.
+- **Settings → Environments → github-pages** — the deployment branch rules. If
+  this lists branches and `main` does not match one of them, the deploy job is
+  rejected *before its first step runs*: one second, no steps, no downloadable
+  logs, and the reason only visible as an annotation on the run. That symptom
+  looks like a broken workflow and is not one — check this setting first.
