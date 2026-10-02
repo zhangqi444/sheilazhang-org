@@ -63,12 +63,12 @@ button in the corner flips it and remembers.
 Every push to `main` runs `.github/workflows/pages.yml`, which uploads the root
 of the repository to GitHub Pages. Two things are needed once, on GitHub:
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions.** This
-   one is done by hand and cannot be automated: the workflow asks for it
-   (`configure-pages` with `enablement: true`), but the `GITHUB_TOKEN` an Action
-   runs with is not allowed to create a Pages site, so the request comes back
-   `Resource not accessible by integration` and the run fails there. Flip the
-   switch once and every run after it passes.
+1. **Settings → Pages → Build and deployment.** Pages is enabled. Which
+   *Source* is selected decides what publishes the site: **Deploy from a
+   branch** means GitHub builds `main` itself on every push and
+   `.github/workflows/pages.yml` is redundant, while **GitHub Actions** means
+   that workflow is what publishes. A `GITHUB_TOKEN` can neither create a Pages
+   site nor change this setting, so it is always a human's click.
 2. **DNS for the apex domain.** `sheilazhang.org` needs four `A` records (and,
    for IPv6, four `AAAA` records) pointing at GitHub's Pages servers; the
    current addresses are in

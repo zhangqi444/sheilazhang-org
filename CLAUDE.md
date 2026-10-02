@@ -37,7 +37,15 @@ test suite.
 
 ## Pages
 
-Deploys fail at `actions/configure-pages` until GitHub Pages is switched on by
-hand under Settings → Pages → Source: GitHub Actions. `GITHUB_TOKEN` is not
-allowed to create a Pages site, so no change to the workflow can fix a run that
-fails there — it needs a human with repository settings access.
+Pages is enabled on the repository. Check which **Source** it serves from under
+Settings → Pages before changing anything about deployment, because the two
+sources are mutually exclusive:
+
+- **Deploy from a branch** — GitHub builds and publishes the branch itself on
+  every push. Nothing in `.github/workflows` is involved, and a custom workflow
+  that tries to deploy is rejected by the `github-pages` environment before its
+  first step runs.
+- **GitHub Actions** — `.github/workflows/pages.yml` is what publishes the site.
+
+A `GITHUB_TOKEN` cannot create a Pages site or change its source, so anything in
+that dropdown needs a human with repository settings access.
